@@ -1,19 +1,28 @@
-# Order of the Moon
-Order of the Moon is an exclusive and independent NFT & DAO created for limited distribution between the 22 holders of the token. Each token represents one of the 22 Major Arcana of Tarot. Tokens cannot be exchanged unless the transaction is signed off on by at least 3 "witnesses." 
+# Thieves Guild
+Thieves Guild is an exclusive and anonymous NFT & DAO app. Ownership of a token grants membership and event access both on and off chain. Tokens cannot be exchanged unless the transaction is signed off on by a set number of holders.
 
-Tokens are updated once every moon cycle for attendees. Upon update, experience points are added to the token and it can increase in rank as a show of participation in the order. 
+Tokens are updated once every moon cycle for attendees. Upon update, experience points are added to the token and it can increase in rank as a show of participation in the guild. 
 
 ## Ranks
-Ranks exist within the order and each rank has varying permissions and responsibilities when interacting with other members both on and off chain. 
+Ranks exist within the guild and each rank has varying permissions and responsibilities when interacting with other members both on and off chain. 
 
-### High Priestess
-High Priestess(HP) is the highest rank in the order. It is the responsibility of the HP to host and lead the events. The rank of High Priestess can be transferred or loaned at any time and exists separate the token. 
+### Guildmaster
+Guildmaster is the highest rank in the guild. It is the responsibility of the GM to host and lead events. The rank of Guildmaster can be transferred or loaned at any time and exists separate the token. 
 
-### Priestess 
-Priestess is the second highest rank within the order. There can be as many as (Q) priestesses in the order. Off-chain, a priestess' power is comparable to the HP, but they have limited on-chain permissions. Specifically, the Priestess gains an additional vote when the High Priestess isn't present, and they are freely able to promote or demote member ranks. 
+### Master Thief 
+Master Thief is the second highest rank within the order. The number of master thieves in the guild can be set. Off-chain, a MT's power is comparable to the GM, but they have limited on-chain permissions. Specifically, the MT gains an additional vote when the GM isn't present, and they are freely able to promote or demote member ranks. 
 
-### Placeholder
-The placeholder
+### Operative
+Off-chain, an operative is no different than a thief. On-chain, operatives have additional access including invite and promoting permissions.
+
+### Scout
+To compliment the Operative, Scouts have planning and organizational permissions for off-chain events, but on-chain they are no different than a thief.
+
+### Thief
+The basic rank of a full member.
+
+### Apprentice
+An entry rank. Apprentices cannot clone or invite.
 
 ## Exchanging Tokens
 These tokens are not meant to be easily exchanged. The High Priest (owner) and two other holders must sign off on a transaction before it can be initiated on the blockchain. The token **can**, however, be loaned out for a single moon cycle to another holder of the token. This loaning process allows for a member to assume the rank and responsibilities of the token owner in the event that the owner of the token is unable to make it.
