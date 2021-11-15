@@ -23,9 +23,9 @@ contract Spirit is ERC721, Ownable, VRFConsumerBase {
 
     mapping (bytes32 => address) public requestIdToSender;
     mapping (bytes32 => string) public requestIdToTokenURI;
-    mapping (uint256 => Suit) public tokenIdToSuit;
+    mapping (Counters.Counter => Suit) public tokenIdToSuit;
     mapping (bytes32 => uint256) public requestIdToTokenId;
-    mapping (uint256 => Value) public tokenIdToCardValue;
+    mapping (Counters.Counter => Value) public tokenIdToCardValue;
     mapping (address => string) public cardHolderToTitle;
     mapping (address => Avatar) public cardHolderToAvatar;
 
@@ -35,7 +35,7 @@ contract Spirit is ERC721, Ownable, VRFConsumerBase {
 
 
     constructor(address _VRFCoordinator, address _LinkToken, bytes32 _keyHash) public 
-    VRFConsumerBase(_VRFCoordinator, _LinkToken) ERC721('TGC', 'Thieves Guild Card') { 
+    VRFConsumerBase(_VRFCoordinator, _LinkToken) ERC721('Thieves Guild Card', 'CARD') { 
         keyHash = _keyHash;
         fee = 0.1 * 10**18;
     }
@@ -49,7 +49,7 @@ contract Spirit is ERC721, Ownable, VRFConsumerBase {
     function fulfillRandomness(bytes32 requestId, uint256 num) internal override {
         address cardHolder = requestIdToSender[requestId];
         string memory tokenURI = requestIdToTokenURI[requestId];
-        //uint256 newItemId = tokenId;
+        uint256 newItemId = tokenId.current();
         _safeMint(cardHolder, newItemId);
         _setTokenURI(newItemId, tokenURI);
         if (num % 333 != 33) {
@@ -64,6 +64,7 @@ contract Spirit is ERC721, Ownable, VRFConsumerBase {
         tokenIdToSuit[newItemId] = suit;
         tokenIdToCardValue[newItemId] = value;
         requestIdToTokenId[requestId] = newItemId;
+        tokenId.increment();
     }
 
     function setTitle(string memory _title, address _target) public onlyOwner{
