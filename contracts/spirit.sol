@@ -77,4 +77,8 @@ contract Spirit is ERC721, Ownable, VRFConsumerBase {
         cardHolderToAvatar[msg.sender] = avatar;
     }
 
+    function invitePerson(address _target) public {
+        // clone token and send to recipient
+    }
+
 }
