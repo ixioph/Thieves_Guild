@@ -79,6 +79,7 @@ contract Spirit is ERC721, Ownable, VRFConsumerBase {
 
     function invitePerson(address _target) public {
         // clone token and send to recipient
+        // how do we time lock access?
     }
 
 }
