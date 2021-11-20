@@ -82,4 +82,8 @@ contract Spirit is ERC721, Ownable, VRFConsumerBase {
         // how do we time lock access?
     }
 
+    function setRank(Rank rank, address _target) public onlyOwner {
+        //
+    }
+
 }
