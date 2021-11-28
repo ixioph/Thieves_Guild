@@ -15,11 +15,12 @@ contract Spirit is ERC721, Ownable, VRFConsumerBase {
                 The_Fool, The_Magician, The_High_Priestess, The_Empress, The_Emperor, The_Heirophant, 
                 The_Lovers, The_Chariot, Strength, The_Hermit, Wheel_of_Fortune,Justice, The_Hanged_man, 
                 Death, Temperance, The_Devil, The_Tower, The_Star, The_Moon, The_Sun, Judgement, The_World}
-    struct Avatar { // values editable by the token owner
-        uint8 face;
-        uint8 hair;
-        uint8 wear;
-    }
+    // removed all Avatar stuff for now
+    // struct Avatar { // values editable by the token owner
+    //     uint8 face;
+    //     uint8 hair;
+    //     uint8 wear;
+    // }
 
     mapping (bytes32 => address) public requestIdToSender;
     mapping (bytes32 => string) public requestIdToTokenURI;
@@ -27,7 +28,7 @@ contract Spirit is ERC721, Ownable, VRFConsumerBase {
     mapping (bytes32 => uint256) public requestIdToTokenId;
     mapping (Counters.Counter => Value) public tokenIdToCardValue;
     mapping (address => string) public cardHolderToTitle;
-    mapping (address => Avatar) public cardHolderToAvatar;
+    //mapping (address => Avatar) public cardHolderToAvatar;
 
     bytes32 internal keyHash;
     uint256 internal fee;
@@ -71,11 +72,11 @@ contract Spirit is ERC721, Ownable, VRFConsumerBase {
         cardHolderToTitle[_target] = _title;
     }
 
-    function setAvatar(uint8 _face, uint8 _hair, uint8 _wear) public {
-        // require that sender holds a token
-        Avatar avatar = Avatar(_face, _hair, _wear);
-        cardHolderToAvatar[msg.sender] = avatar;
-    }
+    // function setAvatar(uint8 _face, uint8 _hair, uint8 _wear) public {
+    //     // require that sender holds a token
+    //     Avatar avatar = Avatar(_face, _hair, _wear);
+    //     cardHolderToAvatar[msg.sender] = avatar;
+    // }
 
     function invitePerson(address _target) public {
         // clone token and send to recipient
