@@ -15,19 +15,17 @@ contract Spirit is ERC721, Ownable, VRFConsumerBase {
                 The_Fool, The_Magician, The_High_Priestess, The_Empress, The_Emperor, The_Heirophant, 
                 The_Lovers, The_Chariot, Strength, The_Hermit, Wheel_of_Fortune,Justice, The_Hanged_man, 
                 Death, Temperance, The_Devil, The_Tower, The_Star, The_Moon, The_Sun, Judgement, The_World}
-    struct Avatar { // values editable by the token owner
-        uint8 face;
-        uint8 hair;
-        uint8 wear;
-    }
+
+    enum Rank {Apprentice, Thief, Scout, Operative, Master_Thief}
+    uint256 experience;
 
     mapping (bytes32 => address) public requestIdToSender;
     mapping (bytes32 => string) public requestIdToTokenURI;
-    mapping (uint256 => Suit) public tokenIdToSuit;
     mapping (bytes32 => uint256) public requestIdToTokenId;
-    mapping (uint256 => Value) public tokenIdToCardValue;
-    mapping (address => string) public cardHolderToTitle;
-    mapping (address => Avatar) public cardHolderToAvatar;
+    mapping (Counters.Counter => Suit) public tokenIdToSuit;
+    mapping (Counters.Counter => Value) public tokenIdToCardValue;
+    mapping (Counters.Counter => Rank) public tokenIdToRank;
+    mapping (Counters.Counter => uint256) public tokenIdToExperience;
 
     bytes32 internal keyHash;
     uint256 internal fee;
@@ -35,7 +33,7 @@ contract Spirit is ERC721, Ownable, VRFConsumerBase {
 
 
     constructor(address _VRFCoordinator, address _LinkToken, bytes32 _keyHash) public 
-    VRFConsumerBase(_VRFCoordinator, _LinkToken) ERC721('TGC', 'Thieves Guild Card') { 
+    VRFConsumerBase(_VRFCoordinator, _LinkToken) ERC721('Thieves Guild Card', 'CARD') { 
         keyHash = _keyHash;
         fee = 0.1 * 10**18;
     }
@@ -49,7 +47,7 @@ contract Spirit is ERC721, Ownable, VRFConsumerBase {
     function fulfillRandomness(bytes32 requestId, uint256 num) internal override {
         address cardHolder = requestIdToSender[requestId];
         string memory tokenURI = requestIdToTokenURI[requestId];
-        //uint256 newItemId = tokenId;
+        uint256 newItemId = tokenId.current();
         _safeMint(cardHolder, newItemId);
         _setTokenURI(newItemId, tokenURI);
         if (num % 333 != 33) {
@@ -64,16 +62,13 @@ contract Spirit is ERC721, Ownable, VRFConsumerBase {
         tokenIdToSuit[newItemId] = suit;
         tokenIdToCardValue[newItemId] = value;
         requestIdToTokenId[requestId] = newItemId;
+        tokenId.increment();
     }
 
-    function setTitle(string memory _title, address _target) public onlyOwner{
-        cardHolderToTitle[_target] = _title;
+    function setRank(string memory _rank, address _tokenId) public onlyOwner{
+        tokenIdToRank[_tokenId] = _rank;
     }
 
-    function setAvatar(uint8 _face, uint8 _hair, uint8 _wear) public {
-        // require that sender holds a token
-        Avatar avatar = Avatar(_face, _hair, _wear);
-        cardHolderToAvatar[msg.sender] = avatar;
-    }
+
 
 }
